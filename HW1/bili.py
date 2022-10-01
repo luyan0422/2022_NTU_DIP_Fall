@@ -5,16 +5,16 @@ import matplotlib.pyplot as plt
 #imple Bilinear Interpolation
 def bilinear(image, scaling_factor):
     row, col, dim = image.shape
-    new_row = int(row / scaling_factor)
-    new_col = int(col / scaling_factor)
+    new_row = int(row * scaling_factor)
+    new_col = int(col * scaling_factor)
     # create new image
     result = np.zeros((new_row, new_col, dim))
     
     # mapping to origin image
     for i in range(new_row):
         for j in range(new_col):
-            x = i * scaling_factor
-            y = j * scaling_factor
+            x = i / scaling_factor
+            y = j / scaling_factor
             
             #計算要 Bilinear Interpolation 的四條線
             x_floor = math.floor(x)
@@ -28,7 +28,7 @@ def bilinear(image, scaling_factor):
             down_left = image[x_ceil, y_floor, : ]
             down_right = image[x_ceil, y_ceil, : ]
             
-            # due to x may not be an integer > we should cast it to an integer
+            # due to x & y may not be an integer > we should cast it to an integer thus we use(int)x
             if (x_ceil == x_floor) and (y_ceil == y_floor):
                 q = image[int(x), int(y), :]
             elif (x_ceil == x_floor):
@@ -51,14 +51,14 @@ img = cv.imread('me.jpg')
 cv.imshow('original', img)
 cv.waitKey(0)
 
-pic_1 = bilinear(img, 0.1)
-cv.imshow('scaling factor 0.1', pic_1)
+pic_1 = bilinear(img, 0.2)
+cv.imshow('scaling factor 0.2', pic_1)
 cv.waitKey(0)
 
-pic_2 = bilinear(img, 5)
-cv.imshow('scaling factor 5', pic_2)
-cv.waitKey(0)
+#pic_2 = bilinear(img, 5)
+#cv.imshow('scaling factor 5', pic_2)
+#cv.waitKey(0)
 
-pic_3 = bilinear(img, 30)
-cv.imshow('scaling factor 30', pic_3)
-cv.waitKey(0)
+#pic_3 = bilinear(img, 32)
+#cv.imshow('scaling factor 32', pic_3)
+#cv.waitKey(0)

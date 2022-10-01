@@ -27,8 +27,8 @@ def biscubic(image, scaling_factor):
     row, col, dim = image.shape
     #pad around incase next step out of boundry
     image = pad_arrond(image)
-    new_row = int(row / scaling_factor)
-    new_col = int(col / scaling_factor)
+    new_row = int(row * scaling_factor)
+    new_col = int(col * scaling_factor)
     # create new image
     result = np.zeros((new_row, new_col, dim))
     # mapping to origin image
@@ -36,8 +36,8 @@ def biscubic(image, scaling_factor):
     for k in range(dim):
         for i in range(new_row):
             for j in range(new_col):
-                x = i * scaling_factor
-                y = j * scaling_factor
+                x = i / scaling_factor
+                y = j / scaling_factor
                 
                 #計算要 biscubic Interpolation 的四條線
                 x_floor = math.floor(x)
@@ -69,9 +69,9 @@ img = cv.imread('me.jpg')
 cv.imshow('original', img)
 cv.waitKey(0)
 
-#pic_1 = biscubic(img, 0.2)
-#cv.imshow('scaling factor 0.2', pic_1)
-#cv.waitKey(0)
+pic_1 = biscubic(img, 0.2)
+cv.imshow('scaling factor 0.2', pic_1)
+cv.waitKey(0)
 
 pic_2 = biscubic(img, 5)
 cv.imshow('scaling factor 5', pic_2)
