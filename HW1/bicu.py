@@ -23,7 +23,7 @@ def pad_arrond(image):
     pad_image[row + 2:row + 4, col + 2:col + 4]=img[row - 1,col - 1]#down-right
     return pad_image
 
-def biscubic(image, scaling_factor):
+def bicubic(image, scaling_factor):
     row, col, dim = image.shape
     #pad around incase next step out of boundry
     image = pad_arrond(image)
@@ -39,7 +39,7 @@ def biscubic(image, scaling_factor):
                 x = i / scaling_factor
                 y = j / scaling_factor
                 
-                #計算要 biscubic Interpolation 的四條線
+                #計算要 bicubic Interpolation 的四條線
                 x_floor = math.floor(x)
                 x_ceil = min(row - 1, math.ceil(x))
                 y_floor = math.floor(y)
@@ -64,19 +64,16 @@ def biscubic(image, scaling_factor):
     return result.astype(np.uint8)
 
 
-
+#read the image
 img = cv.imread('me.jpg')
-cv.imshow('original', img)
-cv.waitKey(0)
 
-pic_1 = biscubic(img, 0.2)
-cv.imshow('scaling factor 0.2', pic_1)
-cv.waitKey(0)
+#output the result image
+pic_1 = bicubic(img, 0.2)
+cv.imwrite('bicubic02.jpg', pic_1)
 
-pic_2 = biscubic(img, 5)
-cv.imshow('scaling factor 5', pic_2)
-cv.waitKey(0)
+pic_2 = bicubic(img, 5)
+cv.imwrite('bicubic5.jpg', pic_2)
 
-#pic_3 = biscubic(img, 32)
-#cv.imshow('scaling factor 32', pic_3)
-#cv.waitKey(0)
+pic_3 = bicubic(img, 32)
+cv.imwrite('bicubic32.jpg', pic_3)
+
