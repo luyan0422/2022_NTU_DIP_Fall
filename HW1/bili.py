@@ -48,17 +48,17 @@ def bilinear(image, scaling_factor):
     return result.astype(np.uint8)
 
 #read the image
-img = cv.imread('me.jpg')
+img = cv.imread('origin.jpg')
 
 #output the result image
 pic_1 = bilinear(img, 0.2)
-cv.imwrite('bilinear_02.jpg', pic_1)
+cv.imwrite('bilinear0.2x.jpg', pic_1)
 
 
 pic_2 = bilinear(img, 5)
-cv.imwrite('bilinear5.jpg', pic_2)
+cv.imwrite('bilinear5x.jpg', pic_2)
 
 
 pic_3 = bilinear(img, 32)
-cv.imwrite('bilinear32.jpg', pic_3)
+cv.imwrite('bilinear32x.jpg', pic_3)
 
