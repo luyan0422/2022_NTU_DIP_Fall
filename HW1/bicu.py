@@ -9,7 +9,7 @@ def w(x, a = -0.5):
         return a * (abs(x) ** 3) - (5 * a) * (abs(x) ** 2) + 8 * a * abs(x) - 4 * a
     else:
         return 0
-def pad_arrond(image):
+def pad_around(image):
     row, col, dim = image.shape
     pad_image = np.zeros((row + 4, col + 4, dim))
     pad_image[2:row + 2, 2:col + 2] = image #middle
@@ -26,7 +26,7 @@ def pad_arrond(image):
 def bicubic(image, scaling_factor):
     row, col, dim = image.shape
     #pad around incase next step out of boundry
-    image = pad_arrond(image)
+    image = pad_around(image)
     new_row = int(row * scaling_factor)
     new_col = int(col * scaling_factor)
     # create new image
