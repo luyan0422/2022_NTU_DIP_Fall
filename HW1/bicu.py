@@ -65,15 +65,15 @@ def bicubic(image, scaling_factor):
 
 
 #read the image
-img = cv.imread('me.jpg')
+img = cv.imread('origin.jpg')
 
 #output the result image
 pic_1 = bicubic(img, 0.2)
-cv.imwrite('bicubic02.jpg', pic_1)
+cv.imwrite('bicubic0.2x.jpg', pic_1)
 
 pic_2 = bicubic(img, 5)
-cv.imwrite('bicubic5.jpg', pic_2)
+cv.imwrite('bicubic5x.jpg', pic_2)
 
 pic_3 = bicubic(img, 32)
-cv.imwrite('bicubic32.jpg', pic_3)
+cv.imwrite('bicubic32x.jpg', pic_3)
 
