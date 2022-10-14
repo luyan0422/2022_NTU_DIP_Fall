@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import math
 
-#imple Bilinear Interpolation
+#implement Bilinear Interpolation
 def bilinear(image, scaling_factor):
     row, col, dim = image.shape
     new_row = int(row * scaling_factor)
